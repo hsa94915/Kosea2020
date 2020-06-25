@@ -99,9 +99,9 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 		getContentPane().add(jsp, "Center");
 		getContentPane().add(p, "South");
 
-		setSize(1280, 720);
+		setSize(1024, 720);
 		setVisible(false);
-		setLocation(setCenterX(1280), setCenterY(720));
+		setLocation(setCenterX(1024), setCenterY(720));
 
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

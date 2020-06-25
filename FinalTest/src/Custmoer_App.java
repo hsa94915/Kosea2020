@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 
 public class Custmoer_App {
 
-	public JFrame frame;
+	public JFrame frmLogin;
 	public JTextField idField;
 	public JPasswordField passwordField;
 	public JLabel lbld;
@@ -38,7 +38,7 @@ public class Custmoer_App {
 			public void run() {
 				try {
 					Custmoer_App window = new Custmoer_App();
-					window.frame.setVisible(true);
+					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,17 +58,19 @@ public class Custmoer_App {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		frame = new JFrame();
+		frmLogin = new JFrame();
+		frmLogin.setTitle("Login\r\n");
+		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\a\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\premier-league-soccer.png"));
 		ImagePanel welcomePanel = new ImagePanel(
 				new ImageIcon("C:/Users/a/eclipse-workspace/FinalTest/image/Main2.jpg").getImage());
 		welcomePanel.setBounds(0, 0, 1060, 565);
-		frame.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
-		frame.getContentPane().setLayout(null);
+		frmLogin.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
+		frmLogin.getContentPane().setLayout(null);
 
 		JPanel mainpanel = new JPanel();
 		mainpanel.setBackground(Color.WHITE);
 		mainpanel.setBounds(0, 0, 1060, 565);
-		frame.getContentPane().add(mainpanel);
+		frmLogin.getContentPane().add(mainpanel);
 		mainpanel.setLayout(null);
 		mainpanel.setVisible(false);
 
@@ -76,7 +78,7 @@ public class Custmoer_App {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 25));
 		lblNewLabel_1.setBounds(385, 26, 367, 53);
 //		mainpanel.add(lblNewLabel_1);
-		frame.getContentPane().add(welcomePanel);
+		frmLogin.getContentPane().add(welcomePanel);
 		welcomePanel.setLayout(null);
 
 		// 아이디 넣는 곳
@@ -159,10 +161,10 @@ public class Custmoer_App {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().equals("hs94915")
+				if (idField.getText().equals("a")
 						&& Arrays.equals(passwordField.getPassword(), "1234".toCharArray())) {
 					System.out.println("Welcome Henry");
-					frame.dispose();
+					frmLogin.dispose();
 					MenuJTabaleExam mj = new MenuJTabaleExam();
 					mj.setVisible(true);
 				} else {
@@ -194,10 +196,10 @@ public class Custmoer_App {
 		});
 
 		welcomePanel.add(btnLogin);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
+		frmLogin.setResizable(false);
+		frmLogin.setLocationRelativeTo(null);
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
 

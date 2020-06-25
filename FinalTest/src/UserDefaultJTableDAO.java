@@ -58,6 +58,7 @@ public class UserDefaultJTableDAO {
 	public boolean getIdByCheck(String id) {
 		boolean result = true;
 
+		System.out.println("Line61");
 		try {
 			ps = con.prepareStatement("SELECT * FROM Info WHERE ID=?");
 			ps.setString(1, id.trim());
@@ -76,21 +77,21 @@ public class UserDefaultJTableDAO {
 	}// getIdByCheck()
 
 	/**
-	 * userlist 회원가입하는 기능 메소드
+	 * userlist 추가하는 기능 메소드
 	 */
 	public int userListInsert(UserJDailogGUI user) {
 		int result = 0;
+		System.out.println("Line85");
 		try {
-			ps = con.prepareStatement("insert into Info values(?,?,?,?,?,?,?,?,?)");
+			ps = con.prepareStatement(
+					"insert into Info(id, name, age, positions, nation, TeamName) values(?,?,?,?,?,?)");
 			ps.setString(1, user.id.getText());
 			ps.setString(2, user.name.getText());
-			ps.setString(3, user.backnumber.getText());
-			ps.setInt(4, Integer.parseInt(user.age.getText()));
-			ps.setString(5, user.positions.getText());
-			ps.setString(6, user.nation.getText());
-			ps.setString(7, user.MarketValue.getText());
-			ps.setString(8, user.AnnualSalary.getText());
-			ps.setString(9, user.TeamName.getText());
+			ps.setInt(3, Integer.parseInt(user.age.getText()));
+			ps.setString(4, user.positions.getText());
+			ps.setString(5, user.nation.getText());
+			ps.setString(6, user.TeamName.getText());
+
 			result = ps.executeUpdate(); // 실행 -> 저장
 
 		} catch (SQLException e) {
@@ -107,24 +108,25 @@ public class UserDefaultJTableDAO {
 	 * userlist의 모든 레코드 조회
 	 */
 	public void userSelectAll(DefaultTableModel t_model) {
+		System.out.println("111 실행");
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("select * from Info order by id");
-
 			// DefaultTableModel에 있는 기존 데이터 지우기
 			for (int i = 0; i < t_model.getRowCount();) {
 				t_model.removeRow(0);
 			}
 
 			while (rs.next()) {
-				Object data[] = { rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9) };
-
+				Object data[] = { rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getBytes(10) };
 				t_model.addRow(data); // DefaultTableModel에 레코드 추가
+				
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e + "=> userSelectAll fail");
+			e.getStackTrace();
+			System.out.println(e + "=> userSelectAll fail3");
 		} finally {
 			dbClose();
 		}
@@ -154,25 +156,29 @@ public class UserDefaultJTableDAO {
 	 */
 	public int userUpdate(UserJDailogGUI user) {
 		int result = 0;
-		String sql = "UPDATE Info SET Name=?, Age=? , BackNumber=?, Positions=? , Nation=?, TeamName=?  WHERE id=?";
+		String sql = "UPDATE Info SET  NAME=?, Age=?,BackNumber=?,Nation=?, TeamName=?  WHERE id=?";
 
+		System.out.println("Line159------" + sql);
 		try {
 			ps = con.prepareStatement(sql);
 			// ?의 순서대로 값 넣기
 			ps.setString(1, user.name.getText());
-			ps.setString(2, user.age.getText());
+			ps.setInt(2, Integer.parseInt(user.age.getText()));
 			ps.setString(3, user.backnumber.getText());
-			ps.setString(4, user.positions.getText());
-			ps.setString(5, user.nation.getText().trim());
+			ps.setString(4, user.nation.getText());
+			ps.setString(5, user.TeamName.getText());
 			ps.setString(6, user.id.getText());
-			ps.setString(7, user.MarketValue.getText());
-			ps.setString(8, user.AnnualSalary.getText());
-			ps.setString(9, user.TeamName.getText());
+			System.out.println("name" + user.name.getText());
+			System.out.println("age" + user.age.getText());
+			System.out.println("backnumber" + user.backnumber.getText());
+			System.out.println("nation" + user.nation.getText().trim());
+			System.out.println("TeamName" + user.TeamName.getText());
+
 			// 실행하기
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println(e + "=> userUpdate fail");
+			System.out.println(e + "=> userUpdate fail33");
 		} finally {
 			dbClose();
 		}
@@ -198,7 +204,7 @@ public class UserDefaultJTableDAO {
 
 			while (rs.next()) {
 				Object data[] = { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) };
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9) };
 
 				dt.addRow(data);
 			}

@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 	JLabel lable_Id = new JLabel("ID");
 	JLabel lable_Name = new JLabel("Name");
 	JLabel lable_Age = new JLabel("Age");
-	JLabel lable_Positions = new JLabel("Positions");
+	JLabel lable_BackNumber = new JLabel("BackNumber");
 	JLabel lable_Nation = new JLabel("Nation");
 	JLabel lable_TeamName = new JLabel("TeamName");
 
@@ -60,9 +61,9 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 	private final JLabel lbel_1 = new JLabel("Premier League");
 	private final JLabel lblKeepItUp = new JLabel("Keep it up");
 
-	public UserJDailogGUI(MenuJTabaleExam me, String index) {
-		super(me, "선수정보추가");
-		this.me = me;
+	public UserJDailogGUI(MenuJTabaleExam mee, String index) {
+		super(mee, "선수정보추가");
+		this.me = mee;
 		getContentPane().setLayout(null);
 		if (index.equals("확인")) {
 			confirm = new JButton(index);
@@ -71,10 +72,14 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 
 			// text박스에 선택된 레코드의 정보 넣기
 			int row = me.jt.getSelectedRow();// 선택된 행
-			id.setText(me.jt.getValueAt(row, 0).toString());
-			name.setText(me.jt.getValueAt(row, 1).toString());
-			age.setText(me.jt.getValueAt(row, 2).toString());
-			positions.setText(me.jt.getValueAt(row, 3).toString());
+			id.setText(Objects.isNull(me.jt.getValueAt(row, 0)) ? "" : me.jt.getValueAt(row, 0).toString());
+			name.setText(Objects.isNull(me.jt.getValueAt(row, 1)) ? "" : me.jt.getValueAt(row, 1).toString());
+			age.setText(Objects.isNull(me.jt.getValueAt(row, 2)) ? "" : me.jt.getValueAt(row, 2).toString());
+			backnumber.setText(Objects.isNull(me.jt.getValueAt(row, 3)) ? "" : me.jt.getValueAt(row, 3).toString());
+			nation.setText(Objects.isNull(me.jt.getValueAt(row, 5)) ? "" : me.jt.getValueAt(row, 5).toString());
+			TeamName.setText(Objects.isNull(me.jt.getValueAt(row, 8)) ? "" : me.jt.getValueAt(row, 8).toString());
+	
+//			positions.setText(me.jt.getValueAt(row, 3).toString());
 
 			// id text박스 비활성
 			id.setEditable(false);
@@ -92,19 +97,31 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 		idCkBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		idCkBtn.setBounds(196, 0, 87, 28);
 		idCkP.add(idCkBtn);
+		
 		id.setBounds(0, -1, 199, 28);
+		
 		idCkP.add(id);
 		idCkBtn.addActionListener(this);
+		
 		name.setBounds(388, 113, 283, 28);
+		name.setEditable(true);
 		pc.add(name);
+		
 		age.setBounds(388, 179, 283, 28);
 		pc.add(age);
-		positions.setBounds(388, 245, 283, 28);
-		pc.add(positions);
+		
+		backnumber.setBounds(388, 245, 283, 28);
+		pc.add(backnumber);
+		
+//		positions.setBounds(388, 303, 283, 28);
+//		pc.add(positions);
+		
 		nation.setBounds(388, 303, 283, 28);
 		pc.add(nation);
+		
 		TeamName.setBounds(388, 359, 283, 28);
 		pc.add(TeamName);
+		
 		ps.setBackground(Color.DARK_GRAY);
 		ps.setBounds(0, 0, 344, 404);
 
@@ -126,12 +143,12 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 		lable_Name.setBounds(388, 87, 54, 14);
 		lable_Name.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		pc.add(lable_Name);
-		lable_Age.setBounds(388, 153, 54, 16);
+		lable_Age.setBounds(388, 153, 84, 16);
 		lable_Age.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		pc.add(lable_Age);
-		lable_Positions.setBounds(388, 219, 68, 14);
-		lable_Positions.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		pc.add(lable_Positions);
+		lable_BackNumber.setBounds(388, 219, 84, 14);
+		lable_BackNumber.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		pc.add(lable_BackNumber);
 		lable_Nation.setBounds(388, 285, 54, 14);
 		lable_Nation.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		pc.add(lable_Nation);
@@ -148,7 +165,7 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		// 이벤트등록
-		confirm.addActionListener(this); // 가입/수정 이벤트등록
+		confirm.addActionListener(this); // 추가/수정 이벤트등록
 		reset.addActionListener(this); // 취소 이벤트등록
 		
 		getContentPane().add(ps);
