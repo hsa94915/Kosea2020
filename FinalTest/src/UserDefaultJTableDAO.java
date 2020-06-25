@@ -84,11 +84,11 @@ public class UserDefaultJTableDAO {
 		System.out.println("Line85");
 		try {
 			ps = con.prepareStatement(
-					"insert into Info(id, name, age, positions, nation, TeamName) values(?,?,?,?,?,?)");
+					"insert into Info(id, name, backnumber, age, nation, TeamName) values(?,?,?,?,?,?)");
 			ps.setString(1, user.id.getText());
 			ps.setString(2, user.name.getText());
-			ps.setInt(3, Integer.parseInt(user.age.getText()));
-			ps.setString(4, user.positions.getText());
+			ps.setString(3, user.backnumber.getText());
+			ps.setInt(4, Integer.parseInt(user.age.getText()));
 			ps.setString(5, user.nation.getText());
 			ps.setString(6, user.TeamName.getText());
 

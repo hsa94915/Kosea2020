@@ -74,8 +74,8 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 			int row = me.jt.getSelectedRow();// 선택된 행
 			id.setText(Objects.isNull(me.jt.getValueAt(row, 0)) ? "" : me.jt.getValueAt(row, 0).toString());
 			name.setText(Objects.isNull(me.jt.getValueAt(row, 1)) ? "" : me.jt.getValueAt(row, 1).toString());
-			age.setText(Objects.isNull(me.jt.getValueAt(row, 2)) ? "" : me.jt.getValueAt(row, 2).toString());
-			backnumber.setText(Objects.isNull(me.jt.getValueAt(row, 3)) ? "" : me.jt.getValueAt(row, 3).toString());
+			backnumber.setText(Objects.isNull(me.jt.getValueAt(row, 2)) ? "" : me.jt.getValueAt(row, 2).toString());
+			age.setText(Objects.isNull(me.jt.getValueAt(row, 3)) ? "" : me.jt.getValueAt(row, 3).toString());
 			nation.setText(Objects.isNull(me.jt.getValueAt(row, 5)) ? "" : me.jt.getValueAt(row, 5).toString());
 			TeamName.setText(Objects.isNull(me.jt.getValueAt(row, 8)) ? "" : me.jt.getValueAt(row, 8).toString());
 	

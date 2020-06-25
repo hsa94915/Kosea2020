@@ -161,7 +161,7 @@ public class Custmoer_App {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().equals("a")
+				if (idField.getText().equals("hs94915")
 						&& Arrays.equals(passwordField.getPassword(), "1234".toCharArray())) {
 					System.out.println("Welcome Henry");
 					frmLogin.dispose();
